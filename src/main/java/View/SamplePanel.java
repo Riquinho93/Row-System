@@ -1,0 +1,89 @@
+package View;
+
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.markup.html.form.DateTextField;
+import org.apache.wicket.extensions.yui.calendar.DatePicker;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.NumberTextField;
+import org.apache.wicket.markup.html.form.Radio;
+import org.apache.wicket.markup.html.form.RadioGroup;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
+
+import Model.ColecaoModel;
+import Model.UserModel;
+
+public class SamplePanel extends Panel {
+
+	private static final long serialVersionUID = 1L;
+
+	public SamplePanel(String id) {
+		this(id, new ColecaoModel());
+	}
+	
+	public SamplePanel(String id, final ColecaoModel colecaoModel) {
+		super(id);
+		
+	
+		add(new Label("message", "NOVA COLEÇÃO"));
+
+		Form<ColecaoModel> form = new Form<ColecaoModel>("form", new CompoundPropertyModel<ColecaoModel>(colecaoModel));
+
+		final TextField<String> nome = new TextField<String>("nome");
+
+		
+		nome.setOutputMarkupId(true);
+
+		// Criando botão de enviar
+		// Botão Ajax
+		AjaxButton ajaxButton = new AjaxButton("submit") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				super.onSubmit(target, form);
+
+				executarAoSalvar(target, colecaoModel);
+
+				target.add(nome);
+			}
+		};
+		ajaxButton.setOutputMarkupId(true);
+		
+		add(form);
+		form.add(nome);
+		form.add(ajaxButton);
+		//Data
+				DatePicker datePickerInicial = new DatePicker() {
+					private static final long serialVersionUID = 1L;
+
+					@Override
+					protected boolean alignWithIcon() {
+						return true;
+					}
+
+					@Override
+					protected boolean enableMonthYearSelection() {
+						return false;
+					}
+				};
+
+				DateTextField data = new DateTextField("dtColecao", "dd/MM/yyyy");
+				datePickerInicial.setAutoHide(true);
+				data.add(datePickerInicial);
+				data.setOutputMarkupId(true);
+				form.add(data);
+	}
+
+	// Enviando os dados para o HomePage
+	public void executarAoSalvar(AjaxRequestTarget target, ColecaoModel colecaoModel) {
+
+	}
+
+}
