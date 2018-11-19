@@ -3,7 +3,6 @@ package View;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 
-
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,19 +12,20 @@ import Model.UserModel;
 public class HomePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-	
-	public HomePage() {
 
+	// Form<?> form = new Form<Object>("form");
+	public HomePage() {
+		// add(form);
 		add(new Label("msg", "Row System"));
-		
-		rederizandoPagina();
-		
+
+		add(rederizandoPagina());
+
 	}
 
 	// Metodo deRederizar a pagina
-	public void rederizandoPagina() {
+	public AjaxLink rederizandoPagina() {
 		// Botão normal
-		AjaxLink<?> button = new AjaxLink<Object>("principal") {
+		AjaxLink<Object> button = new AjaxLink<Object>("principal") {
 
 			private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,7 @@ public class HomePage extends WebPage {
 		};
 		button.setOutputMarkupId(true);
 		add(button);
+		return button;
 	}
 
 }

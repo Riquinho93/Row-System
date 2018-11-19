@@ -15,6 +15,7 @@ public class UserModel implements Serializable{
 	private boolean answer;
 	private String colecao;
 	
+	
 	//Metodos especiais
 	public String getNome() {
 		return nome;

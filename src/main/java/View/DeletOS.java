@@ -6,23 +6,21 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import Model.CadastroModel;
-import Model.ColecaoModel;
-import Model.UserModel;
+import Model.OrdemModel;
 
-public class MyPanel extends Panel {
+public class DeletOS extends Panel {
 
 	private static final long serialVersionUID = 1L;
-	private ColecaoModel user = new ColecaoModel() ;	
-	
-	public MyPanel(String id, final ColecaoModel answer) {
+
+	private OrdemModel user = new OrdemModel();
+
+	public DeletOS(String id, final OrdemModel answer) {
 		super(id);
 		this.user = answer;
-		
-		
-		Form<ColecaoModel> form = new Form<ColecaoModel>("resposta");
 
-		add(new Label("msg", "Confirma exclusão do Cliente?"));
+		Form<OrdemModel> form = new Form<OrdemModel>("resp");
+
+		add(new Label("msg", "Confirma exclusão da OS?"));
 
 		// Tamanho do Modal
 		// modalWindow.setInitialHeight(200);
@@ -38,7 +36,7 @@ public class MyPanel extends Panel {
 				if (target != null) {
 					user.setAnswer(true);
 					executarAoSalvar(target, user);
-					
+
 				}
 			}
 		};
@@ -52,22 +50,21 @@ public class MyPanel extends Panel {
 				if (target != null) {
 					user.setAnswer(false);
 					executarAoSalvar(target, user);
-					
+
 				}
 			}
 		};
 		add(form);
 		yesButton.setOutputMarkupId(true);
 		noButton.setOutputMarkupId(true);
-		
+
 		form.add(yesButton);
 		form.add(noButton);
 
 	}
 
 	// Enviando os dados para o HomePage
-	public void executarAoSalvar(AjaxRequestTarget target, ColecaoModel colecaoModel) {
+	public void executarAoSalvar(AjaxRequestTarget target, OrdemModel ordemModel) {
 
 	}
-
 }

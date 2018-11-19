@@ -18,19 +18,19 @@ import org.apache.wicket.model.Model;
 import Model.ColecaoModel;
 import Model.UserModel;
 
-public class SamplePanel extends Panel {
+public class ColecaoPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
-	public SamplePanel(String id) {
+	public ColecaoPanel(String id) {
 		this(id, new ColecaoModel());
 	}
 	
-	public SamplePanel(String id, final ColecaoModel colecaoModel) {
+	public ColecaoPanel(String id, final ColecaoModel colecaoModel) {
 		super(id);
 		
 	
-		add(new Label("message", "NOVA COLEÇÃO"));
+		add(new Label("message", "COLEÇÃO"));
 
 		Form<ColecaoModel> form = new Form<ColecaoModel>("form", new CompoundPropertyModel<ColecaoModel>(colecaoModel));
 

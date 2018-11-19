@@ -12,6 +12,7 @@ public class ColecaoModel implements Serializable {
 	private String nome;
 	private String dtColecao;
 	private boolean answer;
+	
 
 	
 	public int getID() {

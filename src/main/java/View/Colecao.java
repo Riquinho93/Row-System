@@ -11,17 +11,15 @@ import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.WindowClo
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
 import Model.CadastroModel;
 import Model.ColecaoModel;
-
+import Model.OrdemModel;
 
 public class Colecao extends HomePage {
 
@@ -38,17 +36,17 @@ public class Colecao extends HomePage {
 	private LoadableDetachableModel<List<ColecaoModel>> loadList;
 
 	public Colecao() {
-		paginaOS();
+
 		// Metodo do container
 		add(divConteiner());
 
 		// Chamando pagina OS
-		
+
 		add(new Label("message", "COLEÇÕES"));
 
 		// Modal Windows
 		modalWindow = new ModalWindow("modalWindow");
-		new SamplePanel(modalWindow.getContentId());
+		new ColecaoPanel(modalWindow.getContentId());
 
 		add(modalWindow);
 
@@ -60,7 +58,7 @@ public class Colecao extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				SamplePanel samplePanel3 = new SamplePanel(modalWindow.getContentId()) {
+				ColecaoPanel colecaoPanel = new ColecaoPanel(modalWindow.getContentId()) {
 
 					private static final long serialVersionUID = 1L;
 
@@ -77,7 +75,7 @@ public class Colecao extends HomePage {
 					};
 				};
 
-				modalWindow.setContent(samplePanel3);
+				modalWindow.setContent(colecaoPanel);
 				target.add(listContainer);
 				modalWindow.show(target);
 
@@ -143,9 +141,9 @@ public class Colecao extends HomePage {
 				// item.add(new Label("ID", user.getId()));
 				item.add(new Label("nome", user.getNome()));
 				item.add(new Label("dtColecao", user.getDtColecao()));
+				item.add(visualizar(item.getIndex(), user));
 				item.add(editando(user));
 				item.add(removendo(item.getIndex()));
-
 			}
 
 		};
@@ -170,7 +168,7 @@ public class Colecao extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				MyPanel myPanel = new MyPanel(modalWindow.getContentId(), answer) {
+				DeletColecao deletColecao = new DeletColecao(modalWindow.getContentId(), answer) {
 
 					private static final long serialVersionUID = 1L;
 
@@ -181,11 +179,10 @@ public class Colecao extends HomePage {
 						}
 
 						modalWindow.close(target);
-						System.out.println("SSSSSS");
 					};
 				};
-				myPanel.setOutputMarkupId(true);
-				modalWindow.setContent(myPanel);
+				deletColecao.setOutputMarkupId(true);
+				modalWindow.setContent(deletColecao);
 				modalWindow.show(target);
 			}
 		};
@@ -202,7 +199,7 @@ public class Colecao extends HomePage {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				SamplePanel samplePanel3 = new SamplePanel(modalWindow.getContentId(), colecaoModel) {
+				ColecaoPanel colecaoPanel = new ColecaoPanel(modalWindow.getContentId(), colecaoModel) {
 
 					private static final long serialVersionUID = 1L;
 
@@ -210,12 +207,11 @@ public class Colecao extends HomePage {
 
 						target.add(listContainer);
 						modalWindow.close(target);
-						System.out.println("CCCCCCCCC");
 					};
 				};
 
-				samplePanel3.setOutputMarkupId(true);
-				modalWindow.setContent(samplePanel3);
+				colecaoPanel.setOutputMarkupId(true);
+				modalWindow.setContent(colecaoPanel);
 				modalWindow.show(target);
 
 			}
@@ -227,20 +223,22 @@ public class Colecao extends HomePage {
 	}
 
 	// Pagina OS
-	 public void paginaOS() {
-	 // Botão normal
-	 AjaxLink<?> button = new AjaxLink<Object>("listaOS") {
-	
-	 private static final long serialVersionUID = 1L;
-	
-	 @Override
-	 public void onClick(AjaxRequestTarget arg0) {
-		 setResponsePage(OrdemServico.class);
-	
-	 }
-	 };
-	 button.setOutputMarkupId(true);
-	 add(button);
-	 }
+
+	AjaxLink<OrdemModel> visualizar(final int index, final ColecaoModel user) {
+		AjaxLink<OrdemModel> button1 = new AjaxLink<OrdemModel>("vis") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				setResponsePage(OrdemServico.class);
+
+			}
+		};
+
+		button1.setOutputMarkupId(true);
+		form.add(button1);
+		return button1;
+	}
 
 }

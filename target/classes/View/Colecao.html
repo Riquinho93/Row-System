@@ -9,11 +9,9 @@
 </wicket:head>
 <body>
 <wicket:extend>
-<h1 wicket:id="message"></h1>
+
 <div class="container">
-	<a class="btn btn-success" wicket:id="viewLink" style="float: right;">Novo
-		<i class="fas fa-plus"></i>
-	</a><br /><br />
+	
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -22,11 +20,18 @@
         		<th>Ações</th>
          	</tr>
     	</thead>
+    	<h1 wicket:id="message"></h1>
+    	<a class="btn btn-success" wicket:id="viewLink" style="float: right;">Novo
+			<i class="fas fa-plus"></i>
+		</a><br /><br />
         <tbody wicket:id="theContainer">
         	<tr wicket:id="listview">
-        		<td><a class="btn btn-info" wicket:id="nome"></a></td>
+        		<td><a class="text" wicket:id="nome"></a></td>
         		<td wicket:id="dtColecao" />
         		<td class="text-center">
+        			<a wicket:id="vis" class="btn btn-default" rel="tooltip" title="Visualizar">
+                		<i class="fas fa-eye"></i>
+                	</a>
                 	<a wicket:id="alt" class="btn btn-default" rel="tooltip" title="Editar">
                 		<i class="fas fa-pencil-alt"></i>
                 	</a>
@@ -34,12 +39,9 @@
                  		 <i class="fa fa-trash"></i>
                		 </a>
             	</td>
-        		
-        		<!-- <td wicket:id="idiom" /> -->
         	</tr>  
     </tbody>
   </table>
-  <div wicket:id="listaOS"></div>
   <div wicket:id="modalWindow"></div>
 </div>
 </wicket:extend>
