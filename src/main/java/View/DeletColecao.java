@@ -6,9 +6,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import Model.CadastroModel;
 import Model.ColecaoModel;
-import Model.UserModel;
 
 public class DeletColecao extends Panel {
 

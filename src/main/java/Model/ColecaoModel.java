@@ -1,50 +1,65 @@
 package Model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
-public class ColecaoModel implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private String id = UUID.randomUUID().toString();
-	private int ID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbColecao")
+public class ColecaoModel implements Serializable{
+
+	private Long colecaoId;
 	private String nome;
-	private String dtColecao;
+	private String dtEntrada;
+	//private String dtSaida;
 	private boolean answer;
-	
 
-	
-	public int getID() {
-		return ID;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getColecaoId() {
+		return colecaoId;
 	}
-	public void setID(int iD) {
-		ID = iD;
+
+	public void setColecaoId(Long colecaoId) {
+		this.colecaoId = colecaoId;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getDtColecao() {
-		return dtColecao;
-	}
-	public void setDtColecao(String dtColecao) {
-		this.dtColecao = dtColecao;
-	}
+
 	public boolean isAnswer() {
 		return answer;
 	}
+
 	public void setAnswer(boolean answer) {
 		this.answer = answer;
 	}
-	public String getId() {
-		return id;
+
+	public String getDtEntrada() {
+		return dtEntrada;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setDtEntrada(String dtEntrada) {
+		this.dtEntrada = dtEntrada;
 	}
-	
-	
+
+//	public String getDtSaida() {
+//		return dtSaida;
+//	}
+//
+//	public void setDtSaida(String dtSaida) {
+//		this.dtSaida = dtSaida;
+//	}
+
 }

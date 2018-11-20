@@ -3,6 +3,8 @@ package View;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.ws.WebServiceProvider;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -17,9 +19,10 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-import Model.CadastroModel;
+import Dao.ColecaoDao;
 import Model.ColecaoModel;
 import Model.OrdemModel;
+import Service.ColecaoService;
 
 public class Colecao extends HomePage {
 
@@ -30,6 +33,9 @@ public class Colecao extends HomePage {
 	private ArrayList<ColecaoModel> colecaoModels = new ArrayList<ColecaoModel>();
 
 	private ListView<ColecaoModel> listView = null;
+	
+	
+	private ColecaoService colecaoService;
 
 	// Criando um container
 	private WebMarkupContainer listContainer = null;
@@ -111,7 +117,7 @@ public class Colecao extends HomePage {
 			}
 		};
 
-		DateTextField data = new DateTextField("dtColecao", "dd/MM/yyyy");
+		DateTextField data = new DateTextField("dtEntrada", "dd/MM/yyyy");
 		datePickerInicial.setAutoHide(true);
 		data.add(datePickerInicial);
 		data.setOutputMarkupId(true);
@@ -138,9 +144,10 @@ public class Colecao extends HomePage {
 			@Override
 			protected void populateItem(ListItem<ColecaoModel> item) {
 				ColecaoModel user = item.getModelObject();
+			//	ColecaoDao user = new ColecaoDao();
 				// item.add(new Label("ID", user.getId()));
 				item.add(new Label("nome", user.getNome()));
-				item.add(new Label("dtColecao", user.getDtColecao()));
+				item.add(new Label("dtEntrada", user.getDtEntrada()));
 				item.add(visualizar(item.getIndex(), user));
 				item.add(editando(user));
 				item.add(removendo(item.getIndex()));
@@ -192,8 +199,8 @@ public class Colecao extends HomePage {
 	}
 
 	// Editando os campos
-	AjaxLink<CadastroModel> editando(final ColecaoModel colecaoModel) {
-		AjaxLink<CadastroModel> button1 = new AjaxLink<CadastroModel>("alt") {
+	AjaxLink<ColecaoModel> editando(final ColecaoModel colecaoModel) {
+		AjaxLink<ColecaoModel> button1 = new AjaxLink<ColecaoModel>("alt") {
 
 			private static final long serialVersionUID = 1L;
 

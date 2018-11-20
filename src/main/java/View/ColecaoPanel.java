@@ -16,7 +16,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 
 import Model.ColecaoModel;
-import Model.UserModel;
 
 public class ColecaoPanel extends Panel {
 
@@ -74,7 +73,7 @@ public class ColecaoPanel extends Panel {
 					}
 				};
 
-				DateTextField data = new DateTextField("dtColecao", "dd/MM/yyyy");
+				DateTextField data = new DateTextField("dtEntrada", "dd/MM/yyyy");
 				datePickerInicial.setAutoHide(true);
 				data.add(datePickerInicial);
 				data.setOutputMarkupId(true);
