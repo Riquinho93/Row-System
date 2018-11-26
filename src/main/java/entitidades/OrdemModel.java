@@ -30,6 +30,7 @@ public class OrdemModel implements Serializable {
 	private Double valor;
 	private String composicao;
 	private String obs;
+	private String status;
 	@ManyToOne
 	@JoinColumn(name = "idColecao")
 	private ColecaoModel idColecao;
@@ -140,6 +141,15 @@ public class OrdemModel implements Serializable {
 
 	public void setOsId(Long osId) {
 		this.osId = osId;
+	}
+	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public OrdemModel(String modelo, boolean answer, String dtSaida, String dtEntrada, String largMedida,

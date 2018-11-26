@@ -32,12 +32,12 @@ public class OrdemServicoForm extends HomePage {
 	// Criando um container
 	private WebMarkupContainer listContainer = null;
 	private LoadableDetachableModel<List<OrdemModel>> loadList;
-	
+
 	public OrdemServicoForm(PageParameters parameters) {
-		
+
 		add(new Label("tnome", parameters.get("nome")));
 		add(new Label("dtEntrada", parameters.get("dtEntrada")));
-		
+
 		add(new Label("msgm", "LISTA OS")).setOutputMarkupId(true);
 		// Metodo do container
 		add(divConteiner()).setOutputMarkupId(true);
@@ -45,6 +45,10 @@ public class OrdemServicoForm extends HomePage {
 		// Modal Windows
 		modalWindow = new ModalWindow("modalWindow");
 		new OSPanel(modalWindow.getContentId());
+
+		// Tamanho do Modal
+		modalWindow.setInitialHeight(600);
+		modalWindow.setInitialWidth(1000);
 
 		add(modalWindow).setOutputMarkupId(true);
 
@@ -93,7 +97,6 @@ public class OrdemServicoForm extends HomePage {
 
 	}
 
-
 	// ListView
 	private WebMarkupContainer divConteiner() {
 		listContainer = new WebMarkupContainer("theContainer");
@@ -116,6 +119,9 @@ public class OrdemServicoForm extends HomePage {
 				OrdemModel user = item.getModelObject();
 				// item.add(new Label("ID", user.getId()));
 				item.add(new Label("modelo", user.getModelo()).setOutputMarkupId(true));
+				item.add(new Label("dtEntrada", user.getDtEntrada()));
+				item.add(new Label("dtSaida", user.getDtSaida()));
+				item.add(new Label("status", user.getStatus()));
 				item.add(editando(user).setOutputMarkupId(true));
 				item.add(removendo(item.getIndex()).setOutputMarkupId(true));
 			}
@@ -148,7 +154,6 @@ public class OrdemServicoForm extends HomePage {
 							ordemModels.remove(index);
 							target.add(listContainer);
 						}
-						System.out.println("TTT2");
 						modalWindow.close(target);
 					};
 				};
