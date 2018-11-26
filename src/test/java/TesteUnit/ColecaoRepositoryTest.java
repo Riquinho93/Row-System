@@ -4,17 +4,15 @@
 //
 //import org.apache.log4j.Logger;
 //
-//import Controller.DaoFactory;
-//import Dao.ColecaoDao;
 //import Model.ColecaoModel;
 //
 //public class ColecaoRepositoryTest {
 //	private static final Logger LOGGER = Logger.getLogger(ColecaoRepositoryTest.class);
 //	
-//	private ColecaoDao colecaoDao = DaoFactory.entityManagerFactorInstance();
+//	private Colecao colecao = DaoFactory.entityManagerFactorInstance();
 //	
 //	public void testFindAll(){
-//		List<ColecaoModel> colecao = this.colecaoDao.findAll();
+//		List<ColecaoModel> colecao = this.colecao.findAll();
 //		
 //		LOGGER.info(colecao);
 //	}

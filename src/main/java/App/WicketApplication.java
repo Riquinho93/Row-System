@@ -1,12 +1,9 @@
-package App;
+package app;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
-import com.myFirstProject.Start;
-
-import View.Colecao;
-import View.HomePage;
+import view.ColecaoForm;
 
 /**
  * Application object for your web application.
@@ -14,6 +11,7 @@ import View.HomePage;
  * 
  * @see com.myFirstProject.Start#main(String[])
  */
+
 public class WicketApplication extends WebApplication
 {
 	/**
@@ -22,7 +20,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return Colecao.class;
+		return ColecaoForm.class;
 	}
 
 	/**

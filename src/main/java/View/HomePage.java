@@ -1,12 +1,10 @@
-package View;
+package view;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
-
 
 public class HomePage extends WebPage {
 
@@ -22,7 +20,7 @@ public class HomePage extends WebPage {
 	}
 
 	// Metodo deRederizar a pagina
-	public AjaxLink rederizandoPagina() {
+	public AjaxLink<?> rederizandoPagina() {
 		// Botão normal
 		AjaxLink<Object> button = new AjaxLink<Object>("principal") {
 
@@ -30,7 +28,7 @@ public class HomePage extends WebPage {
 
 			@Override
 			public void onClick(AjaxRequestTarget arg0) {
-				setResponsePage(Colecao.class);
+				setResponsePage(ColecaoForm.class);
 
 			}
 		};

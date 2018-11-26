@@ -1,21 +1,16 @@
-package View;
+package view;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.NumberTextField;
-import org.apache.wicket.markup.html.form.Radio;
-import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
 
-import Model.ColecaoModel;
+import entitidades.ColecaoModel;
 
 public class ColecaoPanel extends Panel {
 
@@ -24,18 +19,16 @@ public class ColecaoPanel extends Panel {
 	public ColecaoPanel(String id) {
 		this(id, new ColecaoModel());
 	}
-	
+
 	public ColecaoPanel(String id, final ColecaoModel colecaoModel) {
 		super(id);
-		
-	
+
 		add(new Label("message", "COLEÇÃO"));
 
 		Form<ColecaoModel> form = new Form<ColecaoModel>("form", new CompoundPropertyModel<ColecaoModel>(colecaoModel));
 
 		final TextField<String> nome = new TextField<String>("nome");
 
-		
 		nome.setOutputMarkupId(true);
 
 		// Criando botão de enviar
@@ -54,30 +47,30 @@ public class ColecaoPanel extends Panel {
 			}
 		};
 		ajaxButton.setOutputMarkupId(true);
-		
+
 		add(form);
 		form.add(nome);
 		form.add(ajaxButton);
-		//Data
-				DatePicker datePickerInicial = new DatePicker() {
-					private static final long serialVersionUID = 1L;
+		// Data
+		DatePicker datePickerInicial = new DatePicker() {
+			private static final long serialVersionUID = 1L;
 
-					@Override
-					protected boolean alignWithIcon() {
-						return true;
-					}
+			@Override
+			protected boolean alignWithIcon() {
+				return true;
+			}
 
-					@Override
-					protected boolean enableMonthYearSelection() {
-						return false;
-					}
-				};
+			@Override
+			protected boolean enableMonthYearSelection() {
+				return false;
+			}
+		};
 
-				DateTextField data = new DateTextField("dtEntrada", "dd/MM/yyyy");
-				datePickerInicial.setAutoHide(true);
-				data.add(datePickerInicial);
-				data.setOutputMarkupId(true);
-				form.add(data);
+		DateTextField data = new DateTextField("dtEntrada", "dd/MM/yyyy");
+		datePickerInicial.setAutoHide(true);
+		data.add(datePickerInicial);
+		data.setOutputMarkupId(true);
+		form.add(data);
 	}
 
 	// Enviando os dados para o HomePage
