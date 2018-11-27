@@ -18,13 +18,9 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import entitidades.ColecaoModel;
-import entitidades.OrdemModel;
 import service.ColecaoServiceImpl;
-import service.IColecaoService;
 
 public class ColecaoForm extends HomePage {
 
@@ -39,8 +35,8 @@ public class ColecaoForm extends HomePage {
 	private WebMarkupContainer listContainer = null;
 	private LoadableDetachableModel<List<ColecaoModel>> loadList;
 
-//	@SpringBean(name = "colecaoService")
-//	private ColecaoServiceImpl colecaoService;
+	@SpringBean(name = "colecaoService")
+	private ColecaoServiceImpl colecaoService;
 
 	public ColecaoForm() {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

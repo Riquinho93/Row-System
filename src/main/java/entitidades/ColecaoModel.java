@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.sun.mail.imap.protocol.UID;
+
 @Entity
 @Table(name = "tbColecao")
 public class ColecaoModel implements Serializable {
@@ -22,15 +24,17 @@ public class ColecaoModel implements Serializable {
 	@Column(name = "id")
 	private Long colecaoId;
 	
+	private UID iddColecao;
+	
 	@Column(name = "nome")
 	private String nome;
 	
 	@Column(name = "dtEntrada")
 	private String dtEntrada;
-	// private String dtSaida;
+	
 	private boolean answer;
-//	@OneToMany(mappedBy = "colecaoId")
-//	private Collection<OrdemModel> listOs;
+	@OneToMany(mappedBy = "colecaoId")
+	private Collection<OrdemModel> listOs;
 	
 	public ColecaoModel() {}
 
@@ -66,18 +70,26 @@ public class ColecaoModel implements Serializable {
 		this.dtEntrada = dtEntrada;
 	}
 
-//	public Collection<OrdemModel> getListOs() {
-//		return listOs;
-//	}
-//
-//	public void setListOs(Collection<OrdemModel> listOs) {
-//		this.listOs = listOs;
-//	}
+	public Collection<OrdemModel> getListOs() {
+		return listOs;
+	}
+
+	public void setListOs(Collection<OrdemModel> listOs) {
+		this.listOs = listOs;
+	}
 
 	public ColecaoModel(String nome, String dtEntrada) {
 		super();
 		this.nome = nome;
 		this.dtEntrada = dtEntrada;
+	}
+
+	public UID getIddColecao() {
+		return iddColecao;
+	}
+
+	public void setIddColecao(UID iddColecao) {
+		this.iddColecao = iddColecao;
 	}
 
 	

@@ -1,14 +1,21 @@
 package entitidades;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.sun.mail.imap.protocol.UID;
 
 @Entity
 @Table(name = "tbos")
@@ -19,6 +26,7 @@ public class OrdemModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long osId;
+	private UID iddOS;
 	private String modelo;
 	private boolean answer;
 	private String dtSaida;
@@ -34,6 +42,11 @@ public class OrdemModel implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idColecao")
 	private ColecaoModel idColecao;
+	
+	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(name = "ID_ENTRADA_ESTOQUE_PRODUTO")
+//	@Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	private Collection<OrdemModel> listCoresTam;
 
 	public Long getOsId() {
 		return osId;
@@ -166,6 +179,23 @@ public class OrdemModel implements Serializable {
 		this.valor = valor;
 		this.composicao = composicao;
 		this.obs = obs;
+	}
+	
+
+	public UID getIddOS() {
+		return iddOS;
+	}
+
+	public void setIddOS(UID iddOS) {
+		this.iddOS = iddOS;
+	}
+
+	public Collection<OrdemModel> getListCoresTam() {
+		return listCoresTam;
+	}
+
+	public void setListCoresTam(Collection<OrdemModel> listCoresTam) {
+		this.listCoresTam = listCoresTam;
 	}
 
 	public OrdemModel() {

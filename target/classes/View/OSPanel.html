@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <wicket:panel>
 	<h1 wicket:id="message"></h1>
 	<p>
@@ -21,17 +21,79 @@
 					<Label class="text">Status: </label>
 					<input type="text" class="form-control" wicket:id="status" placeholder="Status" />
 				</div>
-				
-				<div>
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#" >Peça </a></li>
-					<li class="active"><a href="#" >Materiais </a></li>
-					<li class="active"><a href="#" >Serviços </a></li>
-					<li class="active"><a href="#" >Adicionais </a></li>
-				</ul><br /><br /><br />
-				</div>
+							
 			</div>
 			<a class="btn btn-success" type="submit" wicket:id="submit">Salvar</a>
 		</form>
+		<div class="card-body">
+			<div class="nav nav-tabs">
+			  <a class="btn btn-info nav-item nav-link active" onclick="abaService('peca')">Peças</a>
+			  <a class="btn btn-info nav-item nav-link" onclick="abaService('service')">Serviços</a>
+			  <a class="btn btn-info nav-item nav-link" onclick="abaService('materiais')">Materiais</a>
+			</div>
+			
+			<div id="peca" class="tab-content teste">
+				<form wicket:id="form2">
+					<div class="row">	
+						<div class="form-group col-sm-3">
+							<Label class="text">Cor: </label>
+							<input type="text" class="form-control" wicket:id="cor" placeholder="Digite a cor" />
+						</div>
+						<div class="form-group col-sm-3">
+							<Label class="text">Tamanho: </label>
+							<input type="text" class="form-control" wicket:id="tam" placeholder="Digite tamanho" />
+						</div>
+						<div class="form-group col-sm-3">
+							<br />
+							<a class="btn btn-primary" type="submit" wicket:id="add">Add</a>
+						</div>
+					</div>
+				</form>
+				<div class="container">
+		
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Cor</th>
+			        		<th>Tamanho</th>
+			        		<th>Ações</th>
+			         	</tr>
+			    	</thead>
+			    	<tbody wicket:id="theContainerCoresTam">
+		        		<tr wicket:id="listViewCoresTam">
+		        		<td><a class="text" wicket:id="cor"></a></td>
+				        <td><a class="text" wicket:id="tam"></a></td>
+				        		<td class="text-center">
+				                	<a wicket:id="delet" class="btn btn-outline-danger" title="Excluir">
+				                 		 <i class="fa fa-trash"></i>
+				               		 </a>
+				            	</td>
+				        	</tr>  
+				    </tbody>
+				  </table>
+  				</div>
+					  
+			</div>
+			
+			<div id="service" class="tab-content teste" style="display:none">
+			  <h2>SERVIÇOS</h2>
+			  <p>Campo de serviços.</p> 
+			</div>
+			
+			<div id="materiais" class="tab-content teste" style="display:none">
+			  <h2>MATERIAIS</h2>
+			  <p>Campo de materiais.</p>
+			</div>
+			</div>
+			<script>
+			function abaService(aba) {
+			    var i;
+			    var x = document.getElementsByClassName("teste");
+			    for (i = 0; i < x.length; i++) {
+			       x[i].style.display = "none";  
+			    }
+			    document.getElementById(aba).style.display = "block";  
+			}
+			</script>	
 	</div>
 </wicket:panel>

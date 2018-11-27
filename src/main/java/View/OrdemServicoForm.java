@@ -16,7 +16,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import entitidades.ColecaoModel;
 import entitidades.OrdemModel;
 
 public class OrdemServicoForm extends HomePage {
