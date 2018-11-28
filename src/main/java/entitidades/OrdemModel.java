@@ -31,14 +31,12 @@ public class OrdemModel implements Serializable {
 	private boolean answer;
 	private String dtSaida;
 	private String dtEntrada;
-	private String largMedida;
-	private String tamanho;
-	private String tecido;
-	private String codigo;
-	private Double valor;
-	private String composicao;
+	private String largura;
+	private String tipoEnfesto;
 	private String obs;
 	private String status;
+
+	
 	@ManyToOne
 	@JoinColumn(name = "idColecao")
 	private ColecaoModel idColecao;
@@ -96,52 +94,22 @@ public class OrdemModel implements Serializable {
 		this.dtEntrada = dtEntrada;
 	}
 
-	public String getLargMedida() {
-		return largMedida;
+	public String getLargura() {
+		return largura;
 	}
 
-	public void setLargMedida(String largMedida) {
-		this.largMedida = largMedida;
+	public void setLargura(String largura) {
+		this.largura = largura;
 	}
 
-	public String getTamanho() {
-		return tamanho;
+
+
+	public String getTipoEnfesto() {
+		return tipoEnfesto;
 	}
 
-	public void setTamanho(String tamanho) {
-		this.tamanho = tamanho;
-	}
-
-	public String getTecido() {
-		return tecido;
-	}
-
-	public void setTecido(String tecido) {
-		this.tecido = tecido;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public String getComposicao() {
-		return composicao;
-	}
-
-	public void setComposicao(String composicao) {
-		this.composicao = composicao;
+	public void setTipoEnfesto(String tipoEnfesto) {
+		this.tipoEnfesto = tipoEnfesto;
 	}
 
 	public String getObs() {
@@ -172,12 +140,7 @@ public class OrdemModel implements Serializable {
 		this.answer = answer;
 		this.dtSaida = dtSaida;
 		this.dtEntrada = dtEntrada;
-		this.largMedida = largMedida;
-		this.tamanho = tamanho;
-		this.tecido = tecido;
-		this.codigo = codigo;
-		this.valor = valor;
-		this.composicao = composicao;
+		this.largura = largMedida;
 		this.obs = obs;
 	}
 	

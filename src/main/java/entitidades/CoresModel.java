@@ -26,6 +26,7 @@ public class CoresModel implements Serializable{
 	private UID iddCores;
 	private String cor;
 	private String tam;
+	private int qtd = 1;
 	private boolean answer;
 
 	@ManyToOne
@@ -63,6 +64,15 @@ public class CoresModel implements Serializable{
 	public void setOsId(OrdemModel osId) {
 		this.osId = osId;
 	}
+	
+	public int getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(int qtd) {
+		this.qtd = qtd;
+	}
+
 	public boolean isAnswer() {
 		return answer;
 	}
@@ -77,6 +87,10 @@ public class CoresModel implements Serializable{
 
 	public void setIddCores(UID iddCores) {
 		this.iddCores = iddCores;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 

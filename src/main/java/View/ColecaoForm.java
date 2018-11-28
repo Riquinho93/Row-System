@@ -229,8 +229,7 @@ public class ColecaoForm extends HomePage {
 		return button1;
 	}
 
-	// Pagina OS
-
+	// Enviando para Pagina OrdemServicoForm
 	AjaxLink<OrdemServicoForm> visualizar(final int index, final ColecaoModel user) {
 		AjaxLink<OrdemServicoForm> button1 = new AjaxLink<OrdemServicoForm>("vis") {
 

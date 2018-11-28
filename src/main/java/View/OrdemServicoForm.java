@@ -16,6 +16,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import entitidades.ColecaoModel;
 import entitidades.OrdemModel;
 
 public class OrdemServicoForm extends HomePage {
@@ -118,11 +119,14 @@ public class OrdemServicoForm extends HomePage {
 				OrdemModel user = item.getModelObject();
 				// item.add(new Label("ID", user.getId()));
 				item.add(new Label("modelo", user.getModelo()).setOutputMarkupId(true));
+				item.add(new Label("largura", user.getLargura()));
+				item.add(new Label("tipoEnfesto", user.getTipoEnfesto()));
 				item.add(new Label("dtEntrada", user.getDtEntrada()));
 				item.add(new Label("dtSaida", user.getDtSaida()));
 				item.add(new Label("status", user.getStatus()));
 				item.add(editando(user).setOutputMarkupId(true));
 				item.add(removendo(item.getIndex()).setOutputMarkupId(true));
+				item.add(Devolucao(item.getIndex(), user));
 			}
 
 		};
@@ -196,5 +200,31 @@ public class OrdemServicoForm extends HomePage {
 		form.add(button1);
 		return button1;
 	}
+	
+	// Enviando para Pagina DevolucaoForm
+		AjaxLink<DevolucaoForm> Devolucao(final int index, final OrdemModel user) {
+			AjaxLink<DevolucaoForm> button1 = new AjaxLink<DevolucaoForm>("devolucao") {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void onClick(AjaxRequestTarget target) {
+					PageParameters parameters = new PageParameters();
+					parameters.add("modelo", user.getModelo());
+					parameters.add("largura", user.getLargura());
+					parameters.add("tipoEnfesto", user.getTipoEnfesto());
+					parameters.add("dtEntrada", user.getDtEntrada());
+					parameters.add("dtSaida", user.getDtSaida());
+					parameters.add("status", user.getStatus());
+					setResponsePage(DevolucaoForm.class, parameters);
+
+				}
+
+			};
+
+			button1.setOutputMarkupId(true);
+			form.add(button1);
+			return button1;
+		}
 
 }

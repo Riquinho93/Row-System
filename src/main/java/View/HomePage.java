@@ -16,6 +16,8 @@ public class HomePage extends WebPage {
 		add(new Label("msg", "Row System"));
 
 		add(rederizandoPagina());
+		
+		add(DevolucaoPagina());
 
 	}
 
@@ -36,5 +38,22 @@ public class HomePage extends WebPage {
 		add(button);
 		return button;
 	}
+	// Metodo deRederizar a pagina
+		public AjaxLink<?> DevolucaoPagina() {
+			// Botão normal
+			AjaxLink<Object> button = new AjaxLink<Object>("devolucao") {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void onClick(AjaxRequestTarget arg0) {
+					setResponsePage(DevolucaoForm.class);
+
+				}
+			};
+			button.setOutputMarkupId(true);
+			add(button);
+			return button;
+		}
 
 }

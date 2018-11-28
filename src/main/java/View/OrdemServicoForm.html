@@ -16,6 +16,8 @@
 		<thead>
 			<tr>
 				<th>Modelo</th>
+				<th>Largura</th>
+				<th>Tipo Enfesto</th>
 				<th>Data Entrada</th>
 				<th>Data Saida</th>
 				<th>Status</th>
@@ -31,6 +33,8 @@
         <tbody wicket:id="theContainer">
         	<tr wicket:id="listview">
         		<td wicket:id="modelo" />
+        		<td wicket:id="largura" />
+        		<td wicket:id="tipoEnfesto" />
         		<td wicket:id="dtEntrada" />
         		<td wicket:id="dtSaida" />
         		<td wicket:id="status" />
@@ -40,6 +44,12 @@
                 	</a>
                 	<a wicket:id="del" class="btn btn-default modal-confirm" title="Excluir">
                  		 <i class="fa fa-trash"></i>
+               		 </a>
+               		 <a wicket:id="devolucao" class="btn btn-default modal-confirm" title="Devolução">
+                 		 <i class="fas fa-share-square"></i>
+               		 </a>
+               		 <a class="btn btn-default modal-confirm" title="Gerar PDF">
+                 		<i class="fas fa-print"></i>
                		 </a>
             	</td>
         		
