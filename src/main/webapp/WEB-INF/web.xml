@@ -32,7 +32,7 @@
 		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
 		<init-param>
 			<param-name>applicationClassName</param-name>
-			<param-value>app.WicketApplication</param-value>
+			<param-value>br.safeerp.app.WicketApplication</param-value>
 		</init-param>
 	</filter>
 

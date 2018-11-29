@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<wicket:extend>
+<br /><br />
+  <form wicket:id="ComentarioForm">
+    Deixe seu comentario aqui:
+    <p>
+    <textarea wicket:id="text" placeholder="Comentario..."></textarea>
+    <input type="text" wicket:id="comentario" class="nospam" onfocus="getElementById('formsubmit').focus();"/>
+    <p>
+    <input type="submit" value="Comentar" id="formsubmit"/>
+  </form>
+  <p/>
+  <span wicket:id="comentarios">
+    <p>
+        <span wicket:id="data">1/1/2004</span><br>
+        <span wicket:id="text">Comment text goes here.</span>
+    </p>
+  </span>
+</wicket:extend>
+</body>
+</html>
