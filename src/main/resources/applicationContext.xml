@@ -18,9 +18,9 @@
 		<property name="password" value="" />
 	</bean>
 
-	<bean id="daoColecao" class="dao.ColecaoImpl" />
+	<bean id="daoColecao" class="br.safeerp.dao.ColecaoImpl" />
 
-	<bean id="colecaoService" class="service.ColecaoServiceImpl">
+	<bean id="colecaoService" class="br.safeerp.service.ColecaoServiceImpl">
 		<property name="daoColecao" ref="daoColecao"></property>
 	</bean>
 

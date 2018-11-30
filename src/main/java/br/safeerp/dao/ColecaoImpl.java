@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import br.safeerp.entitidades.ColecaoModel;
 
-@Repository
 public class ColecaoImpl implements IColecao {
 
 	@PersistenceContext

@@ -10,11 +10,8 @@ import br.safeerp.dao.ColecaoImpl;
 import br.safeerp.dao.IColecao;
 import br.safeerp.entitidades.ColecaoModel;
 
-@Service
-@Transactional
 public class ColecaoServiceImpl implements IColecaoService {
 	
-	@Autowired
 	private IColecao daoColecao;
 	
 	public void setDaoColecao(ColecaoImpl daoColecao) {

@@ -1,6 +1,7 @@
 package br.safeerp.relatorios;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import br.safeerp.entitidades.ProdutoModel;
@@ -12,11 +13,13 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class Relatorio {
+public class Relatorio implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	public void gerarRelatorio(List<ProdutoModel> produto) throws JRException{
 		
-		InputStream arq = Relatorio.class.getResourceAsStream("/Relatorio/ProdutoRelatorio.jrxml");
+		InputStream arq = Relatorio.class.getResourceAsStream("/Relatorio/ProdutosRelatorio.jrxml");
 		
 		JasperReport report = JasperCompileManager.compileReport(arq);
 		

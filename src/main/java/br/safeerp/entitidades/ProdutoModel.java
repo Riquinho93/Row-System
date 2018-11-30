@@ -36,14 +36,13 @@ public class ProdutoModel implements Serializable {
 	private String obs;
 	private String status;
 
-	
 	@ManyToOne
 	@JoinColumn(name = "idColecao")
 	private ColecaoModel idColecao;
-	
-	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(name = "ID_ENTRADA_ESTOQUE_PRODUTO")
-//	@Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	// @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	private Collection<ProdutoModel> listCoresTam;
 
 	public Long getOsId() {
@@ -102,8 +101,6 @@ public class ProdutoModel implements Serializable {
 		this.largura = largura;
 	}
 
-
-
 	public String getTipoEnfesto() {
 		return tipoEnfesto;
 	}
@@ -123,7 +120,6 @@ public class ProdutoModel implements Serializable {
 	public void setOsId(Long osId) {
 		this.osId = osId;
 	}
-	
 
 	public String getStatus() {
 		return status;
@@ -132,18 +128,6 @@ public class ProdutoModel implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public ProdutoModel(String modelo, boolean answer, String dtSaida, String dtEntrada, String largMedida,
-			String tamanho, String tecido, String codigo, Double valor, String composicao, String obs) {
-		super();
-		this.modelo = modelo;
-		this.answer = answer;
-		this.dtSaida = dtSaida;
-		this.dtEntrada = dtEntrada;
-		this.largura = largMedida;
-		this.obs = obs;
-	}
-	
 
 	public UID getIddOS() {
 		return iddOS;
@@ -159,6 +143,19 @@ public class ProdutoModel implements Serializable {
 
 	public void setListCoresTam(Collection<ProdutoModel> listCoresTam) {
 		this.listCoresTam = listCoresTam;
+	}
+	
+	
+
+	public ProdutoModel(String modelo, String largura, String tipoEnfesto, String dtEntrada, String dtSaida,
+			String status) {
+		super();
+		this.modelo = modelo;
+		this.largura = largura;
+		this.tipoEnfesto = tipoEnfesto;
+		this.dtEntrada = dtEntrada;
+		this.dtSaida = dtSaida;
+		this.status = status;
 	}
 
 	public ProdutoModel() {

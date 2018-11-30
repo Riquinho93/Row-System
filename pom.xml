@@ -168,6 +168,21 @@
 			<version>${wicket.version}</version>
 		</dependency>
 
+		<!-- DEPENDENCIES DO EXCEL -->
+		<!-- dependency used for XLSX file format -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+
+		<!-- dependency used for XLS older file format (added for information) -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>

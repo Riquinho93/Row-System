@@ -1,8 +1,18 @@
 package br.safeerp.view;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -25,8 +35,9 @@ public class ProdutoForm extends HomePage {
 	private static final long serialVersionUID = 1L;
 
 	private ModalWindow modalWindow;
-	private ArrayList<ProdutoModel> produtoModels = new ArrayList<ProdutoModel>();
-
+	private List<ProdutoModel> produtoModels = new ArrayList<ProdutoModel>();
+	private XSSFWorkbook workbook;
+	private XSSFSheet sheet;
 	private ListView<ProdutoModel> listView = null;
 	Form<?> form = new Form<Object>("form");
 
@@ -41,7 +52,7 @@ public class ProdutoForm extends HomePage {
 
 		add(new Label("msgm", "PRODUTOS")).setOutputMarkupId(true);
 		// Metodo do container
-		add(divConteiner()).setOutputMarkupId(true);
+		add(divConteiner());
 
 		// Modal Windows
 		modalWindow = new ModalWindow("modalWindow");
@@ -50,8 +61,8 @@ public class ProdutoForm extends HomePage {
 		// Tamanho do Modal
 		modalWindow.setInitialHeight(600);
 		modalWindow.setInitialWidth(1000);
-
-		add(modalWindow).setOutputMarkupId(true);
+		modalWindow.setOutputMarkupId(true);
+		add(modalWindow);
 
 		// modalWindow.add(samplePanel);
 
@@ -88,7 +99,8 @@ public class ProdutoForm extends HomePage {
 
 		// Fachando a janela
 		modalWindow.setWindowClosedCallback(new WindowClosedCallback() {
-			private static final long serialVersionUID = -162677973237618503L;
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClose(AjaxRequestTarget target) {
@@ -129,6 +141,7 @@ public class ProdutoForm extends HomePage {
 				item.add(removendo(item.getIndex()).setOutputMarkupId(true));
 				item.add(Devolucao(item.getIndex(), user).setOutputMarkupId(true));
 				item.add(gerarRelatorio().setOutputMarkupId(true));
+				item.add(gerarExecel().setOutputMarkupId(true));
 			}
 
 		};
@@ -235,11 +248,11 @@ public class ProdutoForm extends HomePage {
 		form.add(button1);
 		return button1;
 	}
-	
-	//Gerar relatorio de Produto
+
+	// Gerar relatorio de Produto
 	public AjaxLink<?> gerarRelatorio() {
 		final Relatorio r = new Relatorio();
-		
+
 		AjaxLink<Object> button = new AjaxLink<Object>("relatorio") {
 
 			private static final long serialVersionUID = 1L;
@@ -250,6 +263,73 @@ public class ProdutoForm extends HomePage {
 				try {
 					r.gerarRelatorio(produtoModels);
 				} catch (JRException e) {
+					e.printStackTrace();
+				}
+
+			}
+		};
+		button.setOutputMarkupId(true);
+		add(button);
+		return button;
+	}
+
+	// Gerar file do excel
+	public AjaxLink<?> gerarExecel() {
+		
+		AjaxLink<XSSFWorkbook> button = new AjaxLink<XSSFWorkbook>("excel") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				System.out.println("Deu certo!!");
+				final String[] colunas = { "modelo", "largura", "Tipo Enfesto", "Data de criação", "Data de retorno",
+						"Status" };
+
+				// Criando arquivo execel com os dados do produtoModel
+				workbook = new XSSFWorkbook();
+				 sheet = workbook.createSheet();
+
+				// definindo tamanho e fonte
+				Font headerFont = workbook.createFont();
+			
+				headerFont.setFontHeightInPoints((short) 17);
+				headerFont.setColor(IndexedColors.RED.getIndex());
+
+				// Associando a fonte com produtoModel(Workbook)
+				CellStyle headerCellStyle = workbook.createCellStyle();
+				headerCellStyle.setFont(headerFont);
+
+				// Criando o header
+				Row headerRow = sheet.createRow(0);
+				for (int i = 0; i < colunas.length; i++) {
+					XSSFCell cell = (XSSFCell) headerRow.createCell(i);
+					cell.setCellValue(colunas[i]);
+					cell.setCellStyle(headerCellStyle);
+				}
+				// Criando as rows com ProdutoModel
+				int rowNum = 1;
+				for (ProdutoModel prod : produtoModels) {
+					XSSFRow row = sheet.createRow(rowNum++);
+					row.createCell(0).setCellValue(prod.getModelo());
+					row.createCell(1).setCellValue(prod.getLargura());
+					row.createCell(2).setCellValue(prod.getTipoEnfesto());
+					row.createCell(3).setCellValue(prod.getDtEntrada());
+					row.createCell(4).setCellValue(prod.getDtSaida());
+					row.createCell(5).setCellValue(prod.getStatus());
+				}
+				// Tamanho das colunas
+				for (int i = 0; i < colunas.length; i++) {
+					sheet.autoSizeColumn(i);
+				}
+
+				try {
+					FileOutputStream filleOut = new FileOutputStream("Produtos.xlsx");
+					workbook.write(filleOut);
+					filleOut.close();
+				
+
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 

@@ -41,7 +41,7 @@ public class ColecaoForm extends HomePage {
 	public ColecaoForm() {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		ColecaoServiceImpl colecaoService = context.getBean("colecaoService", ColecaoServiceImpl.class);
-//		colecaoModels = colecaoService.getAll();
+//	colecaoModels = colecaoService.getAll();
 		// Metodo do container
 		add(divConteiner());
 
