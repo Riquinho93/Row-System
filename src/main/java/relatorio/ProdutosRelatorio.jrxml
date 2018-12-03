@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ColecaoRelatorio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee65250a-c63c-4399-b056-e91ce9ad03a5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProdutoRelatorio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee65250a-c63c-4399-b056-e91ce9ad03a5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="user" class="br.safeerp.entitidades.ProdutoModel"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -49,16 +50,10 @@
 				<text><![CDATA[LARGURA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="60" y="0" width="92" height="30" uuid="d5ff6a0f-64db-49ab-b214-84ac01c48637">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ba1d5d6-a3b5-4ef0-a8f7-b4f79b20d750"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="227" y="0" width="60" height="30" uuid="73f90abe-6dda-48f9-a404-6157ce9b55d7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="149c761f-0ff7-4103-a358-75d028de3a7d"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{largura}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{user}.getLargura()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="320" y="0" width="100" height="30" uuid="f96881c9-9a55-462d-abc5-2b347f4552e0">
@@ -73,7 +68,7 @@
 				<reportElement x="420" y="0" width="92" height="30" uuid="53321b08-87fb-4290-a99e-6da62a732ee5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79e9d544-d8ed-46d9-83de-09f4e8b99ff1"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{tipoEnfesto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{user}.getTipoEnfesto()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="400" y="40" width="50" height="30" uuid="5b77ce1b-0ad4-4ad3-9062-b046e7d9a535">
@@ -88,7 +83,7 @@
 				<reportElement x="450" y="40" width="68" height="31" uuid="6b581074-3d98-4d34-8f82-88385eda449a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5431e94b-6686-4be7-b37c-366c8fc24fbf"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{user}.getStatus()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="39" width="110" height="30" uuid="9c68da03-a071-4d44-b596-fc2097ba54cf">
@@ -103,7 +98,7 @@
 				<reportElement x="110" y="39" width="80" height="30" uuid="c9398ae5-e173-4ef7-8db2-52504f82ce46">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d281e1f6-d365-499a-b4ef-5157ad4cada8"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{dtEntrada}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{user}.getDtEntrada()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="197" y="40" width="120" height="30" uuid="528dc1b1-d9bc-4469-a349-6c577e46ee67">
@@ -118,7 +113,11 @@
 				<reportElement x="317" y="40" width="80" height="30" uuid="da7f9d7a-b1ed-4a37-ae74-0427882e7df2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="401123e2-eec4-4120-bb8c-6c121a8b5d40"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{dtSaida}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{user}.getDtSaida()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="100" height="30" uuid="34be49ae-14ad-4b7c-9cde-505613a7fde6"/>
+				<textFieldExpression><![CDATA[$P{user}.getModelo()]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

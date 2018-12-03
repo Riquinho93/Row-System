@@ -2,7 +2,9 @@ package br.safeerp.view;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -21,10 +23,14 @@ import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow.WindowClo
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.request.handler.resource.ResourceStreamRequestHandler;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.ContentDisposition;
+import org.apache.wicket.util.resource.AbstractResourceStreamWriter;
 
 import br.safeerp.entitidades.ProdutoModel;
 import br.safeerp.relatorios.Relatorio;
@@ -140,8 +146,8 @@ public class ProdutoForm extends HomePage {
 				item.add(editando(user).setOutputMarkupId(true));
 				item.add(removendo(item.getIndex()).setOutputMarkupId(true));
 				item.add(Devolucao(item.getIndex(), user).setOutputMarkupId(true));
-				item.add(gerarRelatorio().setOutputMarkupId(true));
-				item.add(gerarExecel().setOutputMarkupId(true));
+				item.add(gerarRelatorio(user));
+				item.add(gerarExecel(user).setOutputMarkupId(true));
 			}
 
 		};
@@ -250,18 +256,41 @@ public class ProdutoForm extends HomePage {
 	}
 
 	// Gerar relatorio de Produto
-	public AjaxLink<?> gerarRelatorio() {
+	public Link<?> gerarRelatorio(ProdutoModel user) {
 		final Relatorio r = new Relatorio();
-
-		AjaxLink<Object> button = new AjaxLink<Object>("relatorio") {
+		final HashMap<String, Object> produto = new HashMap<String, Object>();
+		// Chave para o Jasper
+		produto.put("user", user);
+		Link<?> button = new Link<Object>("relatorio") {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void onClick(AjaxRequestTarget arg0) {
-
+			public void onClick() {
 				try {
-					r.gerarRelatorio(produtoModels);
+					final byte[] bytes;
+					bytes = r.gerarRelatorio(produto);
+					if (bytes != null) {
+						AbstractResourceStreamWriter Stream = new AbstractResourceStreamWriter() {
+
+							private static final long serialVersionUID = 1L;
+
+							@Override
+							public void write(OutputStream output) throws IOException {
+								output.write(bytes);
+								output.close();
+							}
+
+						};
+
+						ResourceStreamRequestHandler handler = new ResourceStreamRequestHandler(Stream);
+						handler.setContentDisposition(ContentDisposition.ATTACHMENT);
+						// nome do pdf
+						handler.setFileName("Produtos.pdf");
+						getRequestCycle().scheduleRequestHandlerAfterCurrent(handler);
+					} else {
+
+					}
 				} catch (JRException e) {
 					e.printStackTrace();
 				}
@@ -269,65 +298,63 @@ public class ProdutoForm extends HomePage {
 			}
 		};
 		button.setOutputMarkupId(true);
-		add(button);
 		return button;
+
 	}
 
 	// Gerar file do excel
-	public AjaxLink<?> gerarExecel() {
-		
-		AjaxLink<XSSFWorkbook> button = new AjaxLink<XSSFWorkbook>("excel") {
+	public Link<?> gerarExecel(ProdutoModel user) {
+		final String[] colunas = { "modelo", "largura", "Tipo Enfesto", "Data de criação", "Data de retorno",
+				"Status" };
+
+		// Criando arquivo execel com os dados do produtoModel
+		workbook = new XSSFWorkbook();
+		sheet = workbook.createSheet();
+
+		// definindo tamanho e fonte
+		Font headerFont = workbook.createFont();
+
+		headerFont.setFontHeightInPoints((short) 17);
+		headerFont.setColor(IndexedColors.RED.getIndex());
+
+		// Associando a fonte com produtoModel(Workbook)
+		CellStyle headerCellStyle = workbook.createCellStyle();
+		headerCellStyle.setFont(headerFont);
+
+		// Criando o header
+		Row headerRow = sheet.createRow(0);
+		for (int i = 0; i < colunas.length; i++) {
+			XSSFCell cell = (XSSFCell) headerRow.createCell(i);
+			cell.setCellValue(colunas[i]);
+			cell.setCellStyle(headerCellStyle);
+		}
+
+		// Criando as rows com ProdutoModel
+		int rowNum = 1;
+		for (ProdutoModel prod : produtoModels) {
+			XSSFRow row = sheet.createRow(rowNum++);
+			row.createCell(0).setCellValue(prod.getModelo());
+			row.createCell(1).setCellValue(prod.getLargura());
+			row.createCell(2).setCellValue(prod.getTipoEnfesto());
+			row.createCell(3).setCellValue(prod.getDtEntrada());
+			row.createCell(4).setCellValue(prod.getDtSaida());
+			row.createCell(5).setCellValue(prod.getStatus());
+		}
+		// Tamanho das colunas
+		for (int i = 0; i < colunas.length; i++) {
+			sheet.autoSizeColumn(i);
+		}
+
+		Link<XSSFWorkbook> button = new Link<XSSFWorkbook>("excel") {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void onClick(AjaxRequestTarget target) {
-				System.out.println("Deu certo!!");
-				final String[] colunas = { "modelo", "largura", "Tipo Enfesto", "Data de criação", "Data de retorno",
-						"Status" };
-
-				// Criando arquivo execel com os dados do produtoModel
-				workbook = new XSSFWorkbook();
-				 sheet = workbook.createSheet();
-
-				// definindo tamanho e fonte
-				Font headerFont = workbook.createFont();
-			
-				headerFont.setFontHeightInPoints((short) 17);
-				headerFont.setColor(IndexedColors.RED.getIndex());
-
-				// Associando a fonte com produtoModel(Workbook)
-				CellStyle headerCellStyle = workbook.createCellStyle();
-				headerCellStyle.setFont(headerFont);
-
-				// Criando o header
-				Row headerRow = sheet.createRow(0);
-				for (int i = 0; i < colunas.length; i++) {
-					XSSFCell cell = (XSSFCell) headerRow.createCell(i);
-					cell.setCellValue(colunas[i]);
-					cell.setCellStyle(headerCellStyle);
-				}
-				// Criando as rows com ProdutoModel
-				int rowNum = 1;
-				for (ProdutoModel prod : produtoModels) {
-					XSSFRow row = sheet.createRow(rowNum++);
-					row.createCell(0).setCellValue(prod.getModelo());
-					row.createCell(1).setCellValue(prod.getLargura());
-					row.createCell(2).setCellValue(prod.getTipoEnfesto());
-					row.createCell(3).setCellValue(prod.getDtEntrada());
-					row.createCell(4).setCellValue(prod.getDtSaida());
-					row.createCell(5).setCellValue(prod.getStatus());
-				}
-				// Tamanho das colunas
-				for (int i = 0; i < colunas.length; i++) {
-					sheet.autoSizeColumn(i);
-				}
-
+			public void onClick() {
 				try {
 					FileOutputStream filleOut = new FileOutputStream("Produtos.xlsx");
 					workbook.write(filleOut);
 					filleOut.close();
-				
 
 				} catch (IOException e) {
 					e.printStackTrace();

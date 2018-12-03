@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sun.mail.imap.protocol.UID;
-
 @Entity
 @Table(name = "tbos")
 public class ProdutoModel implements Serializable {
@@ -26,7 +24,7 @@ public class ProdutoModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long osId;
-	private UID iddOS;
+	
 	private String modelo;
 	private boolean answer;
 	private String dtSaida;
@@ -129,13 +127,6 @@ public class ProdutoModel implements Serializable {
 		this.status = status;
 	}
 
-	public UID getIddOS() {
-		return iddOS;
-	}
-
-	public void setIddOS(UID iddOS) {
-		this.iddOS = iddOS;
-	}
 
 	public Collection<ProdutoModel> getListCoresTam() {
 		return listCoresTam;
