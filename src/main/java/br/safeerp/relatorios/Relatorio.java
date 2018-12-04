@@ -8,20 +8,16 @@ import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 
-public class Relatorio implements Serializable{
-	
+public class Relatorio implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-	public byte[] gerarRelatorio(HashMap<String, Object> produto) throws JRException{
-		
+	public byte[] gerarRelatorio(HashMap<String, Object> produto) throws JRException {
+
+		// Abrindo o arquivo
 		InputStream arq = Relatorio.class.getResourceAsStream("/Relatorio/ProdutosRelatorio.jasper");
-//		
-//		JasperReport report = JasperCompileManager.compileReport(arq);
-//		
-//		JasperPrint print = JasperFillManager.fillReport(report, produto, new JREmptyDataSource());
-		
-//		JasperViewer.viewReport(print, false);
+
 		return JasperRunManager.runReportToPdf(arq, produto, new JREmptyDataSource());
-		
+
 	}
 }
