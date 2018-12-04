@@ -15,24 +15,24 @@ import com.sun.mail.imap.protocol.UID;
 
 @Entity
 @Table(name = "tbCores")
-public class PecaModel implements Serializable{
-	
+public class PecaModel implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long coresId;
-	private UID iddCores;
 	private String cor;
 	private String tam;
 	private int qtd = 1;
+	private double qtdTotal = 0;
 	private boolean answer;
 
 	@ManyToOne
 	@JoinColumn(name = "osId")
 	private ProdutoModel osId;
-	
+
 	public Long getCoresId() {
 		return coresId;
 	}
@@ -64,7 +64,7 @@ public class PecaModel implements Serializable{
 	public void setOsId(ProdutoModel osId) {
 		this.osId = osId;
 	}
-	
+
 	public int getQtd() {
 		return qtd;
 	}
@@ -81,17 +81,16 @@ public class PecaModel implements Serializable{
 		this.answer = answer;
 	}
 
-	public UID getIddCores() {
-		return iddCores;
+	public double getQtd_total() {
+		return qtdTotal;
 	}
 
-	public void setIddCores(UID iddCores) {
-		this.iddCores = iddCores;
+	public void setQtd_total(double qtd_total) {
+		this.qtdTotal = qtd_total;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 }

@@ -306,6 +306,7 @@ public class ProdutoPanel extends Panel {
 		final TextField<PecaModel> cor = new TextField<PecaModel>("cor");
 		final TextField<PecaModel> tam = new TextField<PecaModel>("tam");
 		final NumberTextField<Integer> qtd = new NumberTextField<Integer>("qtd");
+		final NumberTextField<Double> qtdTotal = new NumberTextField<Double>("qtdTotal");
 
 		// listCoresTam = (List<CoresModel>) cores;
 		// criar uma lista aux para carregar a lista
@@ -313,6 +314,7 @@ public class ProdutoPanel extends Panel {
 		cor.setOutputMarkupId(true);
 		tam.setOutputMarkupId(true);
 		qtd.setOutputMarkupId(true);
+		qtdTotal.setOutputMarkupId(true);
 
 		AjaxButton ajaxButton = new AjaxButton("add") {
 
@@ -323,6 +325,7 @@ public class ProdutoPanel extends Panel {
 				super.onSubmit(target, form2);
 				PecaModel coresAjax = (PecaModel) form2.getModelObject();
 				listCoresTam.add(coresAjax);
+				target.add(qtdTotal);
 				target.add(listContainerCoresTam);
 			}
 		};
@@ -332,6 +335,7 @@ public class ProdutoPanel extends Panel {
 		form2.add(cor);
 		form2.add(tam);
 		form2.add(qtd);
+		form2.add(qtdTotal);
 		form2.add(ajaxButton);
 
 	}
@@ -385,10 +389,10 @@ public class ProdutoPanel extends Panel {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				PecaModel user2 = new PecaModel();
-				if (user.getIddCores() == user2.getIddCores()) {
+				
 					listCoresTam.remove(user2);
 
-				}
+				
 
 				add(listContainerCoresTam);
 			};
@@ -616,11 +620,15 @@ public class ProdutoPanel extends Panel {
 		CompoundPropertyModel<CorteModel> compoundPropertyModel = new CompoundPropertyModel<CorteModel>(cortes);
 		form5 = new Form<CorteModel>("form5", compoundPropertyModel);
 
-		final TextField<CorteModel> cor = new TextField<CorteModel>("cor");
-		final TextField<CorteModel> tam = new TextField<CorteModel>("tam");
-
+		final TextField<PecaModel> cor = new TextField<PecaModel>("cor");
+		final TextField<PecaModel> tam = new TextField<PecaModel>("tam");
+		final NumberTextField<Integer> qtd = new NumberTextField<Integer>("qtd");
+		final NumberTextField<Double> qtdTotal = new NumberTextField<Double>("qtdTotal");
+		
 		cor.setOutputMarkupId(true);
 		tam.setOutputMarkupId(true);
+		qtd.setOutputMarkupId(true);
+		qtdTotal.setOutputMarkupId(true);
 
 		AjaxButton ajaxButton = new AjaxButton("add5") {
 
@@ -631,6 +639,7 @@ public class ProdutoPanel extends Panel {
 				super.onSubmit(target, form5);
 				CorteModel corteAjax = (CorteModel) form5.getModelObject();
 				listCorte.add(corteAjax);
+				target.add(qtdTotal);
 				target.add(listContainerCorte);
 			}
 		};
@@ -639,6 +648,8 @@ public class ProdutoPanel extends Panel {
 		add(form5);
 		form5.add(cor);
 		form5.add(tam);
+		form5.add(qtd);
+		form5.add(qtdTotal);
 		form5.add(ajaxButton);
 
 	}
@@ -669,6 +680,7 @@ public class ProdutoPanel extends Panel {
 
 				item.add(new Label("cor", user.getCor()));
 				item.add(new Label("tam", user.getTam()));
+				item.add(new Label("qtd", user.getQtd()));
 				item.add(removendo(user));
 			}
 
@@ -691,10 +703,10 @@ public class ProdutoPanel extends Panel {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				CorteModel user = new CorteModel();
-				if (user.getIddCortes() == user.getIddCortes()) {
+				
 					listCorte.remove(user);
 
-				}
+				
 
 				add(listContainerCorte);
 			};
