@@ -2,9 +2,7 @@ package br.safeerp.view;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.basic.Label;
 
 public class HomePage extends WebPage {
 
@@ -13,11 +11,11 @@ public class HomePage extends WebPage {
 	// Form<?> form = new Form<Object>("form");
 	public HomePage() {
 		// add(form);
-		add(new Label("msg", "Row System"));
 
 		add(rederizandoPagina());
-		
+
 		add(DevolucaoPagina());
+		add(principalPagina());
 
 	}
 
@@ -38,22 +36,41 @@ public class HomePage extends WebPage {
 		add(button);
 		return button;
 	}
+
 	// Metodo deRederizar a pagina
-		public AjaxLink<?> DevolucaoPagina() {
-			// Botão normal
-			AjaxLink<Object> button = new AjaxLink<Object>("devolucao") {
+	public AjaxLink<?> principalPagina() {
+		// Botão normal
+		AjaxLink<Object> button = new AjaxLink<Object>("menu") {
 
-				private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = 1L;
 
-				@Override
-				public void onClick(AjaxRequestTarget arg0) {
-					setResponsePage(DevolucaoForm.class);
+			@Override
+			public void onClick(AjaxRequestTarget arg0) {
+				setResponsePage(ColecaoForm.class);
 
-				}
-			};
-			button.setOutputMarkupId(true);
-			add(button);
-			return button;
-		}
+			}
+		};
+		button.setOutputMarkupId(true);
+		add(button);
+		return button;
+	}
+
+	// Metodo deRederizar a pagina
+	public AjaxLink<?> DevolucaoPagina() {
+		// Botão normal
+		AjaxLink<Object> button = new AjaxLink<Object>("devolucao") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget arg0) {
+				setResponsePage(DevolucaoForm.class);
+
+			}
+		};
+		button.setOutputMarkupId(true);
+		add(button);
+		return button;
+	}
 
 }

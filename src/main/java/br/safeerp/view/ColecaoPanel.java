@@ -71,6 +71,7 @@ public class ColecaoPanel extends Panel {
 		data.add(datePickerInicial);
 		data.setOutputMarkupId(true);
 		form.add(data);
+		
 	}
 
 	// Enviando os dados para o HomePage

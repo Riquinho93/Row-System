@@ -27,7 +27,7 @@ public class RelatorioExcel implements Serializable{
 
 	public ByteArrayOutputStream gerarRelatorio(ProdutoModel user) {
 
-		final String[] colunas = { "modelo", "largura", "Tipo Enfesto", "Data de criação", "Data de retorno",
+		final String[] colunas = { "Modelo", "Largura", "Tipo Enfesto", "Data de criação", "Data de retorno",
 				"Status" };
 
 		// Criando arquivo execel com os dados do produtoModel

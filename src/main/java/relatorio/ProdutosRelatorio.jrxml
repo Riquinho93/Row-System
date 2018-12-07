@@ -32,7 +32,7 @@
 	<columnHeader>
 		<band height="99" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="60" height="30" uuid="8e12ada7-7415-401d-a0bf-47de09b12965">
+				<reportElement x="0" y="0" width="60" height="20" uuid="db2be4d1-dcd8-4143-ad73-17a0e830a677">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ba1d5d6-a3b5-4ef0-a8f7-b4f79b20d750"/>
 				</reportElement>
 				<textElement>
@@ -41,7 +41,7 @@
 				<text><![CDATA[MODELO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="160" y="0" width="70" height="30" uuid="c1785cf4-91b7-40bf-9778-31d9ed3b0c45">
+				<reportElement x="70" y="0" width="70" height="20" uuid="6b90c007-a2a5-48d7-8398-7a42ee7497a3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="149c761f-0ff7-4103-a358-75d028de3a7d"/>
 				</reportElement>
 				<textElement>
@@ -50,13 +50,13 @@
 				<text><![CDATA[LARGURA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="227" y="0" width="60" height="30" uuid="73f90abe-6dda-48f9-a404-6157ce9b55d7">
+				<reportElement x="70" y="20" width="70" height="20" uuid="36def2ac-fe3c-434b-9e20-6148451ab6f2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="149c761f-0ff7-4103-a358-75d028de3a7d"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{user}.getLargura()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="0" width="100" height="30" uuid="f96881c9-9a55-462d-abc5-2b347f4552e0">
+				<reportElement x="150" y="0" width="100" height="20" uuid="b8fcea97-6afd-48f7-963e-63419c842b9c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79e9d544-d8ed-46d9-83de-09f4e8b99ff1"/>
 				</reportElement>
 				<textElement>
@@ -65,13 +65,13 @@
 				<text><![CDATA[TIPO ENFESTO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="420" y="0" width="92" height="30" uuid="53321b08-87fb-4290-a99e-6da62a732ee5">
+				<reportElement x="150" y="20" width="100" height="20" uuid="94ad3f96-cb14-49e9-9992-ebca7ba43407">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79e9d544-d8ed-46d9-83de-09f4e8b99ff1"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{user}.getTipoEnfesto()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="40" width="50" height="30" uuid="5b77ce1b-0ad4-4ad3-9062-b046e7d9a535">
+				<reportElement x="510" y="0" width="50" height="20" uuid="5cfe5414-436a-47a7-842b-96740e720f91">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5431e94b-6686-4be7-b37c-366c8fc24fbf"/>
 				</reportElement>
 				<textElement>
@@ -80,28 +80,13 @@
 				<text><![CDATA[STATUS:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="450" y="40" width="68" height="31" uuid="6b581074-3d98-4d34-8f82-88385eda449a">
+				<reportElement x="510" y="20" width="50" height="20" uuid="d8083816-6b67-4571-9980-185a251e1bf9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5431e94b-6686-4be7-b37c-366c8fc24fbf"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{user}.getStatus()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="39" width="110" height="30" uuid="9c68da03-a071-4d44-b596-fc2097ba54cf">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d281e1f6-d365-499a-b4ef-5157ad4cada8"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DATA DE CRIAÇÃO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="39" width="80" height="30" uuid="c9398ae5-e173-4ef7-8db2-52504f82ce46">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d281e1f6-d365-499a-b4ef-5157ad4cada8"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$P{user}.getDtEntrada()]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="197" y="40" width="120" height="30" uuid="528dc1b1-d9bc-4469-a349-6c577e46ee67">
+				<reportElement x="380" y="0" width="120" height="20" uuid="1b2277dc-c62e-4746-8f7a-c54f5f3c1f29">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="401123e2-eec4-4120-bb8c-6c121a8b5d40"/>
 				</reportElement>
 				<textElement>
@@ -110,14 +95,29 @@
 				<text><![CDATA[DATA DE RETORNO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="317" y="40" width="80" height="30" uuid="da7f9d7a-b1ed-4a37-ae74-0427882e7df2">
+				<reportElement x="380" y="20" width="120" height="20" uuid="fcf902cc-5532-432f-804d-3626679ca385">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="401123e2-eec4-4120-bb8c-6c121a8b5d40"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{user}.getDtSaida()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="0" width="100" height="30" uuid="34be49ae-14ad-4b7c-9cde-505613a7fde6"/>
+				<reportElement x="0" y="20" width="60" height="20" uuid="5fb2ee7b-5ffc-4b6a-b1fe-34025f8cd14c"/>
 				<textFieldExpression><![CDATA[$P{user}.getModelo()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="0" width="110" height="20" uuid="72121ff9-a8af-4df6-b58c-e4c687c4a92a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d281e1f6-d365-499a-b4ef-5157ad4cada8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DE CRIAÇÃO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="21" width="110" height="19" uuid="f8fc4ca6-886f-462d-a05d-0ab68ba41138">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d281e1f6-d365-499a-b4ef-5157ad4cada8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{user}.getDtEntrada()]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

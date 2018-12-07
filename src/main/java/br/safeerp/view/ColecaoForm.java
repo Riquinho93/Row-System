@@ -41,7 +41,7 @@ public class ColecaoForm extends HomePage {
 	public ColecaoForm() {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		ColecaoServiceImpl colecaoService = context.getBean("colecaoService", ColecaoServiceImpl.class);
-//	colecaoModels = colecaoService.getAll();
+	colecaoModels = colecaoService.getAll();
 		// Metodo do container
 		add(divConteiner());
 
@@ -55,7 +55,7 @@ public class ColecaoForm extends HomePage {
 
 		add(modalWindow);
 
-		// modalWindow.add(samplePanel);
+		 
 
 		// Criando janela do Perfil
 		add(new AjaxLink<String>("viewLink") {
@@ -64,14 +64,14 @@ public class ColecaoForm extends HomePage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				ColecaoPanel colecaoPanel = new ColecaoPanel(modalWindow.getContentId()) {
-
+				
 					private static final long serialVersionUID = 1L;
 
 					public void executarAoSalvar(AjaxRequestTarget target, ColecaoModel colecaoModel) {
 
 						colecaoModels.add(colecaoModel);
-						form.clearInput();
-						form.modelChanged();
+//						form.clearInput();
+//						form.modelChanged();
 						// form.setModelObject(userModel);
 
 						target.add(listContainer);
@@ -79,27 +79,18 @@ public class ColecaoForm extends HomePage {
 						modalWindow.close(target);
 					};
 				};
-
+				colecaoPanel.setOutputMarkupId(true);
+				add(colecaoPanel);
 				modalWindow.setContent(colecaoPanel);
-				target.add(listContainer);
+				//target.add(listContainer);
 				modalWindow.show(target);
 
 			}
 
 		});
-
+		
 		// Colocando nome da janela
 		// modalWindow.setTitle("Second Window");
-
-		// Fachando a janela
-		modalWindow.setWindowClosedCallback(new WindowClosedCallback() {
-			private static final long serialVersionUID = -162677973237618503L;
-
-			@Override
-			public void onClose(AjaxRequestTarget target) {
-				modalWindow.close(target);
-			}
-		});
 
 		// Data
 		DatePicker datePickerInicial = new DatePicker() {
@@ -146,21 +137,22 @@ public class ColecaoForm extends HomePage {
 				ColecaoModel user = item.getModelObject();
 
 				// item.add(new Label("ID", user.getId()));
-				item.add(new Label("nome", user.getNome()).setOutputMarkupId(true));
-				item.add(new Label("dtEntrada", user.getDtEntrada()).setOutputMarkupId(true));
+				item.add(new Label("nome", user.getNome()));
+				item.add(new Label("dtEntrada", user.getDtEntrada()));
 				item.add(visualizar(item.getIndex(), user));
 				item.add(editando(user));
 				item.add(removendo(item.getIndex()));
 			}
 
 		};
-
+		add(listView);
 		listView.setOutputMarkupId(true);
 		// Encapsular a ListView aqui WebMarkupContainer
 
 		// listContainer.add(new
 		// AjaxSelfUpdatingTimerBehavior(Duration.seconds(3)));
 		// Aparecer no container
+//		listContainer.setOutputMarkupId(true);
 		listContainer.add(listView);
 
 		return listContainer;
@@ -216,7 +208,7 @@ public class ColecaoForm extends HomePage {
 						modalWindow.close(target);
 					};
 				};
-
+				
 				colecaoPanel.setOutputMarkupId(true);
 				modalWindow.setContent(colecaoPanel);
 				modalWindow.show(target);

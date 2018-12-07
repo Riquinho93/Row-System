@@ -95,17 +95,6 @@ public class ProdutoForm extends HomePage {
 
 		});
 
-		// Fachando a janela
-		modalWindow.setWindowClosedCallback(new WindowClosedCallback() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void onClose(AjaxRequestTarget target) {
-				modalWindow.close(target);
-			}
-		});
-
 	}
 
 	// ListView
@@ -296,7 +285,6 @@ public class ProdutoForm extends HomePage {
 	public Link<?> gerarExecel(final ProdutoModel user) {
 
 		final RelatorioExcel relatorio = new RelatorioExcel();
-		
 
 		Link<ByteArrayOutputStream> button = new Link<ByteArrayOutputStream>("excel") {
 
@@ -304,29 +292,27 @@ public class ProdutoForm extends HomePage {
 
 			@Override
 			public void onClick() {
-			
-					final ByteArrayOutputStream bytes = relatorio.gerarRelatorio(user);				
-					if (bytes != null) {
-						AbstractResourceStreamWriter Stream = new AbstractResourceStreamWriter() {
 
-							private static final long serialVersionUID = 1L;
+				final ByteArrayOutputStream bytes = relatorio.gerarRelatorio(user);
+				if (bytes != null) {
+					AbstractResourceStreamWriter Stream = new AbstractResourceStreamWriter() {
 
-							@Override
-							public void write(OutputStream output) throws IOException {
-								output.write(bytes.toByteArray());
-								output.close();
-							}
+						private static final long serialVersionUID = 1L;
 
-						};
+						@Override
+						public void write(OutputStream output) throws IOException {
+							output.write(bytes.toByteArray());
+							output.close();
+						}
 
-						ResourceStreamRequestHandler handler = new ResourceStreamRequestHandler(Stream);
-						handler.setContentDisposition(ContentDisposition.ATTACHMENT);
-						// nome do excel
-						handler.setFileName("Produtos.xlsx");
-						getRequestCycle().scheduleRequestHandlerAfterCurrent(handler);
-					}
-					
-			
+					};
+
+					ResourceStreamRequestHandler handler = new ResourceStreamRequestHandler(Stream);
+					handler.setContentDisposition(ContentDisposition.ATTACHMENT);
+					// nome do excel
+					handler.setFileName("Produtos.xlsx");
+					getRequestCycle().scheduleRequestHandlerAfterCurrent(handler);
+				}
 
 			}
 		};

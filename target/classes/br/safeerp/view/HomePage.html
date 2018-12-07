@@ -8,23 +8,21 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </wicket:head>
 <body>
-	<!-- TOPO -->
-	<a type="button" class="btn" style="float: right;">
-			<i class="fas fa-sign-in-alt"></i>
-		</a>
-	<div class="row topo justify-context-between">
-		<div class="col-md-6">
-			<h1 wicket:id="msg"></h1>
+	<div class="container-fluid">
+		<!-- TOPO -->
+		<button class="btn btn-primary" style="float: right;">Login
+			</button>
+		<div class="row topo justify-context-between">
+			<h1 wicket:id="menu">Row System</h1>
 		</div>
+	
+		<!-- Menu horizontal -->
+		<div class="topnav">
+	    	<a class="nav-link" wicket:id="principal" >Home</a>
+	    	<a class="nav-link" wicket:id="devolucao" >Devolução</a>
+	    </div> 
+		<br />
 	</div>
-
-	<!-- Menu horizontal -->
-	<div class="topnav">
-    	<a class="nav-link" wicket:id="principal" >Home</a>
-    	<a class="nav-link" wicket:id="devolucao" >Devolução</a>
-    </div> 
-	<br />
-
 <wicket:child />
 <wicket:child />
 
