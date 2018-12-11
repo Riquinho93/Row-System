@@ -5,7 +5,7 @@
 	<persistence-unit name="colecaoOrdemPersistence" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties> 
-       		 
+       		<session-factory> 
             <!-- Conexão com o banco de dados -->
 			<!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -16,7 +16,7 @@
             <property name="hibernate.hbm2ddl.auto" value="create"/> 
  
 <!--  			<property name="hibernate.format_sql" value="true" /> -->
-
+		</session-factory>
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.safeerp.entitidades.ProdutoModel;
 
-public interface IProduto {
+public interface IProdutoDao {
 	
 	public ProdutoModel save(ProdutoModel ordem);
 	public List<ProdutoModel> getAll();

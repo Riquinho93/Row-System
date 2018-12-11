@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.safeerp.entitidades.PecaModel;
 
-public class PecaImpl implements IPeca {
+public class PecaImplDao implements IPecaDao {
 
 	
 	

@@ -6,14 +6,14 @@ import br.safeerp.entitidades.ColecaoModel;
 
 public interface IColecaoService {
 
-	public ColecaoModel save(ColecaoModel colecao);
+	public void save(ColecaoModel colecao);
 
-	public List<ColecaoModel> getAll();
+	public List<ColecaoModel> listar();
 
-	public ColecaoModel getColecaoModelById(Long idColecao);
+	public ColecaoModel buscarById(Long idColecao);
 
-	public void deleteColecaoModel(Long idColecao);
+	public void delete(Long idColecao);
 
-	public ColecaoModel updateColecaoModel(ColecaoModel colecao);
+//	public ColecaoModel updateColecaoModel(ColecaoModel colecao);
 
 }

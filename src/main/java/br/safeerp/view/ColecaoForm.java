@@ -19,6 +19,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import br.safeerp.dao.ColecaoImplDao;
 import br.safeerp.entitidades.ColecaoModel;
 import br.safeerp.service.ColecaoServiceImpl;
 
@@ -34,17 +35,18 @@ public class ColecaoForm extends HomePage {
 	// Criando um container
 	private WebMarkupContainer listContainer = null;
 	private LoadableDetachableModel<List<ColecaoModel>> loadList;
-
-	@SpringBean(name = "colecaoService")
-	private ColecaoServiceImpl colecaoService;
+//	ColecaoImplDao col;
+	//@SpringBean
+//	private ColecaoServiceImpl colecaoService;
 
 	public ColecaoForm() {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		ColecaoServiceImpl colecaoService = context.getBean("colecaoService", ColecaoServiceImpl.class);
-//	colecaoModels = colecaoService.getAll();
+//	colecaoModels = colecaoService.listar();
+//		col.listar();
 		// Metodo do container
 		add(divConteiner());
-
+		
 		// Chamando pagina OS
 
 		add(new Label("message", "COLEÇÕES")).setOutputMarkupId(true);

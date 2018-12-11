@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.safeerp.dao.IProduto;
+import br.safeerp.dao.IProdutoDao;
 import br.safeerp.entitidades.ProdutoModel;
 
 @Service
 public class OrdemServiceImpl implements IOrdemService {
 	
 	@Autowired
-	private IProduto daoOrdem;
+	private IProdutoDao daoOrdem;
 
 	
-	public void setDaoOrdem(IProduto daoOrdem) {
+	public void setDaoOrdem(IProdutoDao daoOrdem) {
 		this.daoOrdem = daoOrdem;
 	}
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import br.safeerp.entitidades.ProdutoModel;
 
 @Repository
-public class ProdutoImpl implements IProduto {
+public class ProdutoImplDao implements IProdutoDao {
 
 	@PersistenceContext
 	private EntityManager em;

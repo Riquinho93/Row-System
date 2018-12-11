@@ -3,16 +3,12 @@ package br.safeerp.entitidades;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +20,7 @@ public class ProdutoModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long osId;
-	
+
 	private String modelo;
 	private boolean answer;
 	private String dtSaida;
@@ -33,26 +29,18 @@ public class ProdutoModel implements Serializable {
 	private String tipoEnfesto;
 	private String obs;
 	private String status;
+//
+//	@ManyToOne
+//	@JoinColumn(name = "id_colecao")
+//	private ColecaoModel idColecao;
 
-	@ManyToOne
-	@JoinColumn(name = "id_colecao")
-	private ColecaoModel idColecao;
-
-	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Column(name = "ID_ENTRADA_ESTOQUE_PRODUTO")
+//	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@Column(name = "ID_ENTRADA_ESTOQUE_PRODUTO")
 	// @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	private Collection<ProdutoModel> listCoresTam;
+//	private Collection<ProdutoModel> listCoresTam;
 
 	public Long getOsId() {
 		return osId;
-	}
-
-	public ColecaoModel getIdColecao() {
-		return idColecao;
-	}
-
-	public void setIdColecao(ColecaoModel idColecao) {
-		this.idColecao = idColecao;
 	}
 
 	public void setOs_id(Long osId) {
@@ -126,17 +114,6 @@ public class ProdutoModel implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-
-	public Collection<ProdutoModel> getListCoresTam() {
-		return listCoresTam;
-	}
-
-	public void setListCoresTam(Collection<ProdutoModel> listCoresTam) {
-		this.listCoresTam = listCoresTam;
-	}
-	
-	
 
 	public ProdutoModel(String modelo, String largura, String tipoEnfesto, String dtEntrada, String dtSaida,
 			String status) {

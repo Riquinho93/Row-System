@@ -18,9 +18,9 @@
 		<property name="password" value="" />
 	</bean>
 
-	<bean id="daoColecao" class="br.safeerp.dao.ColecaoImpl" />
+	<bean id="daoColecao" class="/Teste/src/main/java/br/safeerp/dao/ColecaoImplDao.java" />
 
-	<bean id="colecaoService" class="br.safeerp.service.ColecaoServiceImpl">
+	<bean id="colecaoService" class="/Teste/src/main/java/br/safeerp/service/ColecaoServiceImpl.java">
 		<property name="daoColecao" ref="daoColecao"></property>
 	</bean>
 
@@ -49,6 +49,6 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean> -->
 
-	<!--  <tx:annotation-driven transaction-manager="transactionManager" />-->
+	<!-- : <txannotation-driven transaction-manager="transactionManager" />-->
 	<context:annotation-config></context:annotation-config>
 </beans>

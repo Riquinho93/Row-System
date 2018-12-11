@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sun.mail.imap.protocol.UID;
@@ -18,25 +17,27 @@ import com.sun.mail.imap.protocol.UID;
 public class ColecaoModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+//	@Column(name = "id")
 	private Long colecaoId;
-	
+
 	private UID iddColecao;
-	
-	@Column(name = "nome")
+
+//	@Column(name = "nome")
 	private String nome;
-	
-	@Column(name = "dt_saida")
+
+//	@Column(name = "dt_saida")
 	private String dtEntrada;
-	
+
 	private boolean answer;
-	@OneToMany(mappedBy = "colecaoId")
-	private Collection<ProdutoModel> listOs;
-	
-	public ColecaoModel() {}
+
+//	//@OneToMany(mappedBy = "colecaoId")
+//	private Collection<ProdutoModel> listOs;
+//	
+	public ColecaoModel() {
+	}
 
 	public Long getColecaoId() {
 		return colecaoId;
@@ -70,14 +71,6 @@ public class ColecaoModel implements Serializable {
 		this.dtEntrada = dtEntrada;
 	}
 
-	public Collection<ProdutoModel> getListOs() {
-		return listOs;
-	}
-
-	public void setListOs(Collection<ProdutoModel> listOs) {
-		this.listOs = listOs;
-	}
-
 	public ColecaoModel(String nome, String dtEntrada) {
 		super();
 		this.nome = nome;
@@ -91,7 +84,5 @@ public class ColecaoModel implements Serializable {
 	public void setIddColecao(UID iddColecao) {
 		this.iddColecao = iddColecao;
 	}
-
-	
 
 }

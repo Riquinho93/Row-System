@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.safeerp.dao.ColecaoImpl;
-import br.safeerp.dao.IColecao;
+import br.safeerp.dao.ColecaoImplDao;
+import br.safeerp.dao.IColecaoDao;
 import br.safeerp.entitidades.ColecaoModel;
 
-@Service
+@Service("colecaoService")
 public class ColecaoServiceImpl implements IColecaoService {
 	
-	private IColecao daoColecao;
+	private IColecaoDao daoColecao;
 	@Autowired
-	public void setDaoColecao(ColecaoImpl daoColecao) {
+	public void setDaoColecao(ColecaoImplDao daoColecao) {
 		this.daoColecao = daoColecao;
 	}
 
@@ -23,29 +23,36 @@ public class ColecaoServiceImpl implements IColecaoService {
 //	 public ColecaoServiceImpl() {}
 
 	@Override
-	public ColecaoModel save(ColecaoModel colecao) {
-		return daoColecao.save(colecao);
+	public void save(ColecaoModel colecao) {
+		daoColecao.save(colecao);
 	}
 
 	@Override
-	public List<ColecaoModel> getAll() {
-		return daoColecao.getAll();
+	public List<ColecaoModel> listar() {
+		return daoColecao.listar();
 	}
 
 	@Override
-	public ColecaoModel getColecaoModelById(Long idColecao) {
-		return daoColecao.getColecaoModelById(idColecao);
+	public ColecaoModel buscarById(Long idColecao) {
+		return daoColecao.buscarById(idColecao);
 	}
 
 	@Override
-	public void deleteColecaoModel(Long idColecao) {
-		daoColecao.deleteColecaoModel(idColecao);
+	public void delete(Long idColecao) {
+		daoColecao.delete(idColecao);
 	}
 
-	@Override
-	public ColecaoModel updateColecaoModel(ColecaoModel colecao) {
-		return daoColecao.updateColecaoModel(colecao);
+
+	public ColecaoServiceImpl() {
+		super();
 	}
+
+//	@Override
+//	public ColecaoModel updateColecaoModel(ColecaoModel colecao) {
+//		return daoColecao.updateColecaoModel(colecao);
+//	}
+	
+	
 
 
 }
