@@ -35,13 +35,13 @@
 		</form>
 		<div class="card-body">
 			<ul class="nav nav-tabs">
-			 	<li><a type="button" class="btn btn-info nav-item nav-link in active" onclick="abaService('#pessoa')">Pessoa</a></li>
-			  	<li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#peca')">Peças</a></li>
-			  	<li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#service')">Serviços</a></li>
-			  	<li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#materiais')">Materiais</a></li>
-			    <li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#corte')">Corte</a></li>
-			    <li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#modelo')">Modelo</a></li>
-			    <li><a type="button" class="btn btn-info nav-item nav-link" onclick="abaService('#adicionais')">Adicionais</a></li>
+			 	<li><a type="button" class="btn btn-outline-info nav-item nav-link in active" onclick="abaService('#pessoa')">Pessoa</a></li>
+			  	<li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#peca')">Peças</a></li>
+			  	<li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#service')">Serviços</a></li>
+			  	<li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#materiais')">Materiais</a></li>
+			    <li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#corte')">Corte</a></li>
+			    <li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#modelo')">Modelo</a></li>
+			    <li><a type="button" class="btn btn-outline-info nav-item nav-link" onclick="abaService('#adicionais')">Adicionais</a></li>
 			</ul>
 			
 			<div id="#pessoa" class="tab-content teste">
@@ -51,6 +51,10 @@
 						<div class="form-group col-sm-3">
 							<Label class="text">Nome: </label>
 							<input type="text" class="form-control" wicket:id="pessoa" placeholder="Digite o nome da pessoa" />
+						</div>
+						<div class="form-group col-sm-3">
+							<Label class="text">Sexo: </label>
+							<input type="text" class="form-control" wicket:id="sexo" placeholder="Digite o sexo" />
 						</div>
 						<div class="form-group col-sm-3">
 							<Label class="text">Tipo: </label>
@@ -68,6 +72,7 @@
 					<thead>
 						<tr>
 							<th>Nome</th>
+							<th>Sexo</th>
 			        		<th>Tipo</th>
 			        		<th>Ações</th>
 			         	</tr>
@@ -75,6 +80,7 @@
 			    	<tbody wicket:id="theContainerPessoa">
 		        		<tr wicket:id="listViewPessoa">
 		        		<td><a class="text" wicket:id="pessoa"></a></td>
+		        		<td><a class="text" wicket:id="sexo"></a></td>
 				        <td><a class="text" wicket:id="tipo"></a></td>
 				        		<td class="text-center">
 				                	<a wicket:id="delet0" class="btn btn-outline-danger" title="Excluir">

@@ -10,10 +10,11 @@ import br.safeerp.dao.ColecaoImpl;
 import br.safeerp.dao.IColecao;
 import br.safeerp.entitidades.ColecaoModel;
 
+@Service
 public class ColecaoServiceImpl implements IColecaoService {
 	
 	private IColecao daoColecao;
-	
+	@Autowired
 	public void setDaoColecao(ColecaoImpl daoColecao) {
 		this.daoColecao = daoColecao;
 	}

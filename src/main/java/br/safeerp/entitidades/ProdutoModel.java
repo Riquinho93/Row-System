@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbos")
+@Table(name = "tb_produto")
 public class ProdutoModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class ProdutoModel implements Serializable {
 	private String status;
 
 	@ManyToOne
-	@JoinColumn(name = "idColecao")
+	@JoinColumn(name = "id_colecao")
 	private ColecaoModel idColecao;
 
 	@OneToMany(mappedBy = "entradaEstoqueProduto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

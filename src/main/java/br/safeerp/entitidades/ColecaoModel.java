@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.sun.mail.imap.protocol.UID;
 
 @Entity
-@Table(name = "tbColecao")
+@Table(name = "tb_colecao")
 public class ColecaoModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class ColecaoModel implements Serializable {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "dtEntrada")
+	@Column(name = "dt_saida")
 	private String dtEntrada;
 	
 	private boolean answer;

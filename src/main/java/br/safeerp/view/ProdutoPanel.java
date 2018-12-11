@@ -208,9 +208,11 @@ public class ProdutoPanel extends Panel {
 		form0 = new Form<PessoaModel>("form0", compoundPropertyModel);
 
 		final TextField<PessoaModel> pessoa = new TextField<PessoaModel>("pessoa");
+		final TextField<PecaModel> sexo = new TextField<PecaModel>("sexo");
 		final TextField<PessoaModel> tipo = new TextField<PessoaModel>("tipo");
 
 		pessoa.setOutputMarkupId(true);
+		sexo.setOutputMarkupId(true);
 		tipo.setOutputMarkupId(true);
 
 		AjaxButton ajaxButton = new AjaxButton("add0") {
@@ -229,6 +231,7 @@ public class ProdutoPanel extends Panel {
 
 		add(form0);
 		form0.add(pessoa);
+		form0.add(sexo);
 		form0.add(tipo);
 		form0.add(ajaxButton);
 
@@ -259,6 +262,7 @@ public class ProdutoPanel extends Panel {
 				// item.add(new Label("ID", user.getId()));
 
 				item.add(new Label("pessoa", user.getPessoa()));
+				item.add(new Label("sexo", user.getSexo()));
 				item.add(new Label("tipo", user.getTipo()));
 				item.add(removendo(user));
 			}

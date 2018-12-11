@@ -10,10 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.sun.mail.imap.protocol.UID;
+
 @Entity
 @Table(name = "tbpessoa")
-public class PessoaModel implements Serializable{
-	
+public class PessoaModel implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "id")
@@ -22,35 +23,50 @@ public class PessoaModel implements Serializable{
 	private UID iddPessoa;
 	private String pessoa;
 	private String tipo;
-	
+	private String sexo;
+
 	public Long getPessoaId() {
 		return pessoaId;
 	}
+
 	public void setPessoaId(Long pessoaId) {
 		this.pessoaId = pessoaId;
 	}
+
 	public UID getIddPessoa() {
 		return iddPessoa;
 	}
+
 	public void setIddPessoa(UID iddPessoa) {
 		this.iddPessoa = iddPessoa;
 	}
+
 	public String getPessoa() {
 		return pessoa;
 	}
+
 	public void setPessoa(String pessoa) {
-		this.pessoa= pessoa;
+		this.pessoa = pessoa;
 	}
+
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }
