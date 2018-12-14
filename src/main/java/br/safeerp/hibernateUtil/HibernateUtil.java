@@ -1,9 +1,9 @@
 package br.safeerp.hibernateUtil;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+//import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+//import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
@@ -12,12 +12,12 @@ public class HibernateUtil {
 
 	public static SessionFactory initialize() {
 		try {
-			configuracao = new Configuration().configure();
-
-			ServiceRegistry registro = new StandardServiceRegistryBuilder().applySettings(configuracao.getProperties())
-					.build();
-
-			factory = configuracao.buildSessionFactory(registro);
+//			configuracao = new Configuration().configure();
+//
+//			ServiceRegistry registro = new StandardServiceRegistryBuilder().applySettings(configuracao.getProperties())
+//					.build();
+//
+//			factory = configuracao.buildSessionFactory(registro);
 
 			System.out.println(">> HIBERNATE INICIADO COM SUCESSO.");
 		} catch (Throwable e) {

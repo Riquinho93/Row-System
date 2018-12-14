@@ -23,8 +23,6 @@ public class ColecaoModel implements Serializable {
 //	@Column(name = "id")
 	private Long colecaoId;
 
-	private UID iddColecao;
-
 //	@Column(name = "nome")
 	private String nome;
 
@@ -75,14 +73,6 @@ public class ColecaoModel implements Serializable {
 		super();
 		this.nome = nome;
 		this.dtEntrada = dtEntrada;
-	}
-
-	public UID getIddColecao() {
-		return iddColecao;
-	}
-
-	public void setIddColecao(UID iddColecao) {
-		this.iddColecao = iddColecao;
 	}
 
 }
